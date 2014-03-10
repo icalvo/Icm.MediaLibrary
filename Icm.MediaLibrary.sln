@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icm.MediaLibrary.Domain.Tests", "Icm.MediaLibrary.Domain.Tests\Icm.MediaLibrary.Domain.Tests.csproj", "{A76DAF39-884C-47CB-9DFB-164B93686DE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icm.MediaLibrary.Domain", "Icm.MediaLibrary.Domain\Icm.MediaLibrary.Domain.csproj", "{72B1813D-1196-4D77-8569-A3C3BFC30FD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icm.MediaLibrary.Infrastructure", "Icm.MediaLibrary.Infrastructure\Icm.MediaLibrary.Infrastructure.csproj", "{C7261540-B1F1-42AE-92FF-DC3B8127F9AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icm.MediaLibrary.Integration.Tests", "Icm.MediaLibrary.Integration.Tests\Icm.MediaLibrary.Integration.Tests.csproj", "{3FFC73FB-5668-43A2-9635-DC3AE7CFBAA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icm.MediaLibrary.Web", "Icm.MediaLibrary.Web\Icm.MediaLibrary.Web.csproj", "{030FE0B0-23DE-43E9-9D00-4785E4A203C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icm.MediaLibrary.Monitor", "Icm.MediaLibrary.Monitor\Icm.MediaLibrary.Monitor.csproj", "{4F9EE182-2A90-4366-B840-EDBC99EAE00D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A76DAF39-884C-47CB-9DFB-164B93686DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76DAF39-884C-47CB-9DFB-164B93686DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76DAF39-884C-47CB-9DFB-164B93686DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76DAF39-884C-47CB-9DFB-164B93686DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72B1813D-1196-4D77-8569-A3C3BFC30FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B1813D-1196-4D77-8569-A3C3BFC30FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B1813D-1196-4D77-8569-A3C3BFC30FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B1813D-1196-4D77-8569-A3C3BFC30FD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7261540-B1F1-42AE-92FF-DC3B8127F9AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7261540-B1F1-42AE-92FF-DC3B8127F9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7261540-B1F1-42AE-92FF-DC3B8127F9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7261540-B1F1-42AE-92FF-DC3B8127F9AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FFC73FB-5668-43A2-9635-DC3AE7CFBAA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FFC73FB-5668-43A2-9635-DC3AE7CFBAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FFC73FB-5668-43A2-9635-DC3AE7CFBAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FFC73FB-5668-43A2-9635-DC3AE7CFBAA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030FE0B0-23DE-43E9-9D00-4785E4A203C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030FE0B0-23DE-43E9-9D00-4785E4A203C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030FE0B0-23DE-43E9-9D00-4785E4A203C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030FE0B0-23DE-43E9-9D00-4785E4A203C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F9EE182-2A90-4366-B840-EDBC99EAE00D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F9EE182-2A90-4366-B840-EDBC99EAE00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F9EE182-2A90-4366-B840-EDBC99EAE00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F9EE182-2A90-4366-B840-EDBC99EAE00D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
