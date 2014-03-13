@@ -1,6 +1,5 @@
 namespace Icm.MediaLibrary.Infrastructure.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class FirstSchema : DbMigration

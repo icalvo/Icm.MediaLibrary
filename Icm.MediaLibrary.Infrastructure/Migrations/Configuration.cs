@@ -1,9 +1,6 @@
 namespace Icm.MediaLibrary.Infrastructure.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Icm.MediaLibrary.Infrastructure.EntityFrameworkSexContext>
     {

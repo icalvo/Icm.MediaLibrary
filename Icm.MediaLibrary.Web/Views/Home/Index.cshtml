@@ -410,7 +410,14 @@
 
     <!-- Page-Level Plugin Scripts - Tables -->
     <script src="~/client/lib/dataTables/jquery.dataTables.js"></script>
+    <script src="~/client/lib/dataTables/jquery.dataTables.columnFilter.js"></script>
     <script src="~/client/lib/dataTables/dataTables.bootstrap.js"></script>
+
+    <script src="~/client/lib/video/video.js"></script>
+    <script>
+        //A reference to Flash object which will serve as 'HTML5 Shiv' if video element is not supported by browser.
+        videojs.options.flash.swf = '@Url.Content("~/client/lib/video/video-js.swf")';
+    </script>
 
     <!-- SB Admin Scripts - Include with every page -->
     <script src="~/client/lib/sb-admin/sb-admin.js"></script>

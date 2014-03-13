@@ -1,5 +1,4 @@
-﻿using System;
-using Icm.MediaLibrary.Domain;
+﻿using Icm.MediaLibrary.Domain;
 using Icm.MediaLibrary.Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -2283,10 +2283,12 @@
 		}
 		else if ( oSettings.sAjaxSource || typeof ajax === 'string' )
 		{
-			// DataTables 1.9- compatibility
-			oSettings.jqXHR = $.ajax( $.extend( baseAjax, {
-				url: ajax || oSettings.sAjaxSource
-			} ) );
+		    // DataTables 1.9- compatibility
+		    var url = $.extend(baseAjax, {
+		        url: ajax || oSettings.sAjaxSource
+		    });
+		    oSettings.jqXHR = $.ajax(url);
+		    console.debug(url);
 		}
 		else if ( $.isFunction( ajax ) )
 		{

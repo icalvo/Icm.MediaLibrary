@@ -17,18 +17,16 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="table-responsive">
-                        
+                        <video id="videoBox" class="video-js vjs-default-skin" controls="" preload="none" width="640" height="264" data-setup="{}">
+                            <source src="/Home/OceansClip?filename=%5C%5CEtrayz%5Cpublic%5CVideo%5COtros%5CHD%5C%5BBabes.com%5D%5C%5BM%5D%20Hayden%20Hawkens.mp4" type="video/mp4">
+                        </video>
                         <table class="table table-striped table-bordered table-hover" data-bind="dataTable: {}">
                             <thead>
                                 <tr>
                                     <th>Hash</th>
                                     <th>Filename</th>
                                     <th>Duration</th>
-                                </tr>
-                                <tr>
-                                    <th><input type="text" name="search_hash" placeholder="Search hash" class="search_init" /></th>
-                                    <th><input type="text" name="search_filename" placeholder="Search filename" class="search_init" /></th>
-                                    <th><input type="text" name="search_duration" placeholder="Search duration" class="search_init" /></th>
+                                    <th>Tags</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +34,14 @@
                                     <td colspan="2">Loading rows...</td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th><input type="text" name="search_hash" placeholder="Search hash" class="search_init" /></th>
+                                    <th><input type="text" name="search_filename" placeholder="Search filename" class="search_init" /></th>
+                                    <th><input type="text" name="search_duration" placeholder="Search duration" class="search_init" /></th>
+                                    <th><input type="text" name="search_tags" placeholder="Search tags" class="search_init" /></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <!-- /.table-responsive -->

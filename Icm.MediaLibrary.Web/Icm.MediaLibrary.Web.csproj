@@ -53,6 +53,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Lib.Web.Mvc">
+      <HintPath>..\packages\Lib.Web.Mvc.6.4.1\lib\net40\Lib.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -231,14 +234,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\MediaWatcherHub.cs" />
-    <Compile Include="Models\AccountBindingModels.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Account\AccountBindingModels.cs" />
+    <Compile Include="Models\Account\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
-    <Compile Include="Models\Field.cs" />
-    <Compile Include="Models\DataTablesColumnSearchRequest.cs" />
-    <Compile Include="Models\DataTablesModelBinder.cs" />
-    <Compile Include="Models\DataTablesRequest.cs" />
-    <Compile Include="Models\IField.cs" />
+    <Compile Include="Models\DataTables\DataTablesColumnSortRequest.cs" />
+    <Compile Include="Models\DataTables\DataTablesModelBinderForMvc.cs" />
+    <Compile Include="Models\DataTables\DataTablesModelBinderForWebApi.cs" />
+    <Compile Include="Models\DataTables\DataTablesModelBinderForWebForms.cs" />
+    <Compile Include="Models\DataTables\Field.cs" />
+    <Compile Include="Models\DataTables\DataTablesColumnSearchRequest.cs" />
+    <Compile Include="Models\DataTables\DataTablesModelBinder.cs" />
+    <Compile Include="Models\DataTables\DataTablesRequest.cs" />
+    <Compile Include="Models\DataTables\IField.cs" />
     <Compile Include="Models\MediaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -268,6 +275,7 @@
     <Content Include="client\lib\bootstrap\bootstrap.min.js" />
     <Content Include="client\lib\dataTables\dataTables.bootstrap.css" />
     <Content Include="client\lib\dataTables\dataTables.bootstrap.js" />
+    <Content Include="client\lib\dataTables\jquery.dataTables.columnFilter.js" />
     <Content Include="client\lib\dataTables\jquery.dataTables.js" />
     <Content Include="client\lib\flot\excanvas.min.js" />
     <Content Include="client\lib\flot\jquery.flot.js" />
@@ -299,6 +307,13 @@
     <Content Include="client\lib\sb-admin\sb-admin.js" />
     <Content Include="client\lib\social-buttons\social-buttons.css" />
     <Content Include="client\lib\timeline\timeline.css" />
+    <Content Include="client\lib\video\demo.html" />
+    <Content Include="client\lib\video\font\vjs.svg" />
+    <Content Include="client\lib\video\video-js.css" />
+    <Content Include="client\lib\video\video-js.min.css" />
+    <Content Include="client\lib\video\video-js.swf" />
+    <Content Include="client\lib\video\video.dev.js" />
+    <Content Include="client\lib\video\video.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -384,6 +399,11 @@
     <Content Include="client\lib\font-awesome\scss\_stacked.scss" />
     <Content Include="client\lib\font-awesome\scss\_variables.scss" />
     <Content Include="client\lib\jquery-2.1.0.min.map" />
+    <Content Include="client\lib\video\demo.captions.vtt" />
+    <Content Include="client\lib\video\font\vjs.eot" />
+    <Content Include="client\lib\video\font\vjs.ttf" />
+    <Content Include="client\lib\video\font\vjs.woff" />
+    <Content Include="client\lib\video\video-js.less" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>

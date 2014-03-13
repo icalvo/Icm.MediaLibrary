@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Icm.MediaLibrary.Domain;
 using Icm.MediaLibrary.Infrastructure;
 using Icm.MediaLibrary.Web.Models;
+using Lib.Web.Mvc;
 
 namespace Icm.MediaLibrary.Web.Controllers
 {
@@ -16,14 +18,36 @@ namespace Icm.MediaLibrary.Web.Controllers
             return View();
         }
 
+        public ActionResult OceansClip(string filename)
+        {
+            FileInfo oceansClipInfo = new FileInfo(filename);
+
+            string extension = oceansClipInfo.Extension.Remove(0, 1);
+            string oceansClipMimeType;
+
+            switch (extension)
+            {
+                case "mp4":
+                    oceansClipMimeType = "video/mp4";
+                    break;
+                case "webm":
+                    oceansClipMimeType = "video/webm";
+                    break;
+                case "ogg":
+                    oceansClipMimeType = "video/ogg";
+                    break;
+                default:
+                    return null;
+            }
+
+            return new RangeFilePathResult(oceansClipMimeType, oceansClipInfo.FullName, oceansClipInfo.LastWriteTimeUtc, oceansClipInfo.Length);
+        }
+
         /// <summary>
-        /// 
+        /// Datas the table.
         /// </summary>
-        /// <param name="iDisplayStart"></param>
-        /// <param name="iDisplayLength"></param>
+        /// <param name="request">The request.</param>
         /// <returns></returns>
-        /// <remarks>
-        /// </remarks>
         public JsonResult DataTable(DataTablesRequest request)
         {
 
@@ -31,13 +55,32 @@ namespace Icm.MediaLibrary.Web.Controllers
 
             var videos = repository.GetVideos();
 
+//            return Json(
+//                request.Response(
+//                    videos.AsQueryable(),
+//                    new Field<Video, string>(video => video.Hash, (video, search) => video.Hash.Contains(search)),
+//                    new Field<Video, string>(video => video.FileName, (video, search) => video.FileName.Contains(search), (videoFileName) => string.Format(@"
+//<video id=""videoBox"" class=""video-js vjs-default-skin"" controls preload=""none"" width=""640"" height=""264"" data-setup=""{{}}"">
+//   <source src=""{0}"" type='video/mp4' />
+//</video>", Url.Action("OceansClip", new { filename = videoFileName }))),
+//                    new Field<Video, TimeSpan>(video => video.Duration, (IQueryable<Video> items, string search) =>
+//                    {
+//                        int maxDuration = int.Parse(search);
+//                        return items.Where(video => DbFunctions.DiffMinutes(TimeSpan.Zero, video.Duration) <= maxDuration);
+//                    }),
+//                    new Field<Video, string>(video => video.NormalizedTags, (video, search) => video.NormalizedTags.Contains(search))),
+//                JsonRequestBehavior.AllowGet);
             return Json(
                 request.Response(
                     videos.AsQueryable(),
                     new Field<Video, string>(video => video.Hash, (video, search) => video.Hash.Contains(search)),
-                    new Field<Video, string>(video => video.FileName),
-                    new Field<Video, TimeSpan>(video => video.Duration)
-                    ), 
+                    new Field<Video, string>(video => video.FileName, (video, search) => video.FileName.Contains(search)),
+                    new Field<Video, TimeSpan>(video => video.Duration, (IQueryable<Video> items, string search) =>
+                    {
+                        int maxDuration = int.Parse(search);
+                        return items.Where(video => DbFunctions.DiffMinutes(TimeSpan.Zero, video.Duration) <= maxDuration);
+                    }),
+                    new Field<Video, string>(video => video.NormalizedTags, (video, search) => video.NormalizedTags.Contains(search))),
                 JsonRequestBehavior.AllowGet);
         }
     }

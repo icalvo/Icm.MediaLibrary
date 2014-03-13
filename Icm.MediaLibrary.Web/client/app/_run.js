@@ -42,7 +42,7 @@
             that.oApi._fnClearTable(oSettings);
 
             /* Got the data - add it to the table */
-            var aData = (oSettings.sAjaxDataProp !== "") ?
+            var aData = (oSettings.sAjaxDataProp !== '') ?
                 that.oApi._fnGetObjectDataFn(oSettings.sAjaxDataProp)(json) : json;
 
             for (var i = 0 ; i < aData.length ; i++) {
@@ -73,21 +73,49 @@
             var options = ko.utils.unwrapObservable(valueAccessor()) || {};
             setTimeout(function () {
                 var table;
+                var asInitVals = new Array();
+
                 table = $(element).dataTable({
-                    "bProcessing": true,
-                    "bServerSide": true,
-                    "sAjaxSource": "http://localhost:52241/Home/DataTable",
-                    "aoColumnDefs": [
-                        { "bSearchable": true, "aTargets": [ "_all" ] }
-                    ]
+                    'bProcessing': true,
+                    'bServerSide': true,
+                    'sAjaxSource': 'http://localhost:52241/Home/DataTable',
+                    'aoColumnDefs': [
+                        { 'bSearchable': true, 'aTargets': ['_all'] },
+                    ],
+                    'bScrollInfinite': true,
+                    'bScrollCollapse': true,
+                    'sScrollY': '400px',
                 });
 
-                $inputs = $("thead input", $(element));
+                $inputs = $('tfoot input', $(element));
 
                 $inputs.keyup(function () {
                     /* Filter on the column (the index) of this element */
                     table.fnFilter(this.value, $inputs.index(this));
                 });
+
+                /*
+                 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
+                 * the footer
+                 */
+                $inputs.each(function (i) {
+                    asInitVals[i] = this.value;
+                });
+
+                $inputs.focus(function () {
+                    if (this.className == 'search_init') {
+                        this.className = '';
+                        this.value = '';
+                    }
+                });
+
+                $inputs.blur(function (i) {
+                    if (this.value == '') {
+                        this.className = 'search_init';
+                        this.value = asInitVals[$('tfoot input').index(this)];
+                    }
+                });
+
             }, 0);
         }
     };

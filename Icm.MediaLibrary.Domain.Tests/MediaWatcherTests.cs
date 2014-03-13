@@ -1,7 +1,6 @@
 ﻿using System;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Icm.MediaLibrary.Domain;
 
 namespace Icm.MediaLibrary.Domain.Tests
 {

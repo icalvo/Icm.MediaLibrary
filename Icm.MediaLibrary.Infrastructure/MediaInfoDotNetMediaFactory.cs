@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using Icm.MediaLibrary.Domain;
 
 namespace Icm.MediaLibrary.Infrastructure
