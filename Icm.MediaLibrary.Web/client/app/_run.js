@@ -73,7 +73,7 @@
             var options = ko.utils.unwrapObservable(valueAccessor()) || {};
             setTimeout(function () {
                 var table;
-                var asInitVals = new Array();
+                var $inputs = $('tfoot input', $(element));
 
                 table = $(element).dataTable({
                     'bProcessing': true,
@@ -87,33 +87,9 @@
                     'sScrollY': '400px',
                 });
 
-                $inputs = $('tfoot input', $(element));
-
                 $inputs.keyup(function () {
                     /* Filter on the column (the index) of this element */
                     table.fnFilter(this.value, $inputs.index(this));
-                });
-
-                /*
-                 * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
-                 * the footer
-                 */
-                $inputs.each(function (i) {
-                    asInitVals[i] = this.value;
-                });
-
-                $inputs.focus(function () {
-                    if (this.className == 'search_init') {
-                        this.className = '';
-                        this.value = '';
-                    }
-                });
-
-                $inputs.blur(function (i) {
-                    if (this.value == '') {
-                        this.className = 'search_init';
-                        this.value = asInitVals[$('tfoot input').index(this)];
-                    }
                 });
 
             }, 0);

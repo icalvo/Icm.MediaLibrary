@@ -1,5 +1,6 @@
 using System.Web.Http;
 using System.Web.Mvc;
+using Icm.MediaLibrary.Web.Areas.HelpPage.Configuration;
 
 namespace Icm.MediaLibrary.Web.Areas.HelpPage
 {

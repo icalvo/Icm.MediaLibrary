@@ -5,11 +5,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Headers;
 using System.Web.Http;
+
 #if Handle_PageResultOfT
 using System.Web.Http.OData;
 #endif
 
-namespace Icm.MediaLibrary.Web.Areas.HelpPage
+namespace Icm.MediaLibrary.Web.Areas.HelpPage.Configuration
 {
     /// <summary>
     /// Use this class to customize the Help Page.

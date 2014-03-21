@@ -28,6 +28,9 @@ namespace Icm.MediaLibrary.Domain.Tests
             return this.files.Where(file => file.StartsWith(directoryPath));
         }
 
+        public IFileOperations File { get; private set; }
+        public IDirectoryOperations Directory { get; private set; }
+
         public void RegisterObserver(IFileSystemObserver observer)
         {
             observers.Add(observer);

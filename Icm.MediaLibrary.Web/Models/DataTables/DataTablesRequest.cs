@@ -53,11 +53,13 @@ namespace Icm.MediaLibrary.Web.Models
         {
             var result = items;
 
+            int unfilteredCount = result.Count();
+
             if (!string.IsNullOrEmpty(this.GlobalSearch))
             {
                 foreach (var column in this.SearchColumns)
                 {
-                    if (column.IsSearchable)
+                    if (column.IsSearchable && !string.IsNullOrEmpty(this.GlobalSearch))
                     {
                         result = fields[column.ColumnIndex].Search(result, this.GlobalSearch);
                     }
@@ -66,11 +68,13 @@ namespace Icm.MediaLibrary.Web.Models
 
             foreach (var column in this.SearchColumns)
             {
-                if (column.IsSearchable)
+                if (column.IsSearchable && !string.IsNullOrEmpty(column.Search))
                 {
                     result = fields[column.ColumnIndex].Search(result, column.Search);
                 }
             }
+
+            int filteredCount = result.Count();
 
             foreach (var column in this.SortColumns)
             {
@@ -97,11 +101,13 @@ namespace Icm.MediaLibrary.Web.Models
                 return row;
             });
 
+
+
             return new
             {
                 sEcho = Challenge,
-                iTotalRecords = items.Count(),
-                iTotalDisplayRecords = result.Count(),
+                iTotalRecords = unfilteredCount,
+                iTotalDisplayRecords = filteredCount,
                 aaData = resultData,
             };
         }

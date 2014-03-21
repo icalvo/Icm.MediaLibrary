@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Icm.MediaLibrary.Domain
 {
@@ -10,9 +12,8 @@ namespace Icm.MediaLibrary.Domain
         {
         }
 
-        protected Media(string hash, string fileName, long size)
+        protected Media(string fileName, long size)
         {
-            this.Hash = hash;
             this.FileName = fileName;
             this.Size = size;
         }
@@ -22,7 +23,16 @@ namespace Icm.MediaLibrary.Domain
             return true;
         }
 
-        public string Hash { get; protected set; }
+        public string GetHash()
+        {
+            SHA1 sha1Encoder = new SHA1CryptoServiceProvider();
+
+            FileStream stream = File.OpenRead(this.FileName);
+            byte[] byteHash = sha1Encoder.ComputeHash(stream);
+            stream.Close();
+            string hash = BitConverter.ToString(byteHash);
+            return hash;
+        }
 
         public long Size { get; protected set; }
 

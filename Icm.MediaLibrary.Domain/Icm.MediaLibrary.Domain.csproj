@@ -44,6 +44,8 @@
     <Compile Include="FileDeleteEventArgs.cs" />
     <Compile Include="FileChangeEventArgs.cs" />
     <Compile Include="FileCreateEventArgs.cs" />
+    <Compile Include="IDirectoryOperations.cs" />
+    <Compile Include="IFileOperations.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="MediaWatcher.cs" />
     <Compile Include="IFileSystem.cs" />

@@ -4,9 +4,8 @@ namespace Icm.MediaLibrary.Domain
 {
     public interface IFileSystem
     {
-        void CreateFile(string filePath);
-
-        IEnumerable<string> GetFilesRecursively(string directoryPath);
+        IFileOperations File { get; }
+        IDirectoryOperations Directory { get; }
 
         void RegisterObserver(IFileSystemObserver observer);
     }

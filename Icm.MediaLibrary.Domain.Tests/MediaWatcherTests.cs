@@ -10,19 +10,19 @@ namespace Icm.MediaLibrary.Domain.Tests
         [TestMethod]
         public void GivenExistingFiles_GetsThemIntoRepository()
         {
-            string audioFileName = "video.mp3";
-            string videoFileName = "video.mp4";
+            const string audioFileName = "video.mp3";
+            const string videoFileName = "video.mp4";
             ILog log = new ConsoleLog();
             IFileSystem fileSystem = new FakeFileSystem();
             IMediaRepository repository = new MemoryMediaRepository();
             IMediaFactory extractor = A.Fake<IMediaFactory>();
             A.CallTo(() => extractor.BuildFromFile(audioFileName)).Returns(new NonMedia());
-            A.CallTo(() => extractor.BuildFromFile(videoFileName)).Returns(new Video("myhash", videoFileName, 340, TimeSpan.Zero, 640, 320));
+            A.CallTo(() => extractor.BuildFromFile(videoFileName)).Returns(new Video(videoFileName, 340, TimeSpan.Zero, 640, 320));
             IFileSystemObserver observer = new FakeFileSystemObserver(fileSystem);
             MediaWatcher mediaWatcher = new MediaWatcher(fileSystem, repository, extractor, observer, log);
 
-            fileSystem.CreateFile(audioFileName);
-            fileSystem.CreateFile(videoFileName);
+            fileSystem.File.Create(audioFileName);
+            fileSystem.File.Create(videoFileName);
             mediaWatcher.Synchronize(@"");
 
             Assert.IsTrue(repository.ContainsFile(videoFileName));
@@ -31,20 +31,20 @@ namespace Icm.MediaLibrary.Domain.Tests
         [TestMethod]
         public void GivenNoFile_WhenWatching_AndAddingFiles_GetsThemIntoRepository()
         {
-            string audioFileName = "video.mp3";
-            string videoFileName = "video.mp4";
+            const string audioFileName = "video.mp3";
+            const string videoFileName = "video.mp4";
             ILog log = new ConsoleLog();
             IFileSystem fileSystem = new FakeFileSystem();
             IMediaRepository repository = new MemoryMediaRepository();
             IMediaFactory extractor = A.Fake<IMediaFactory>();
             A.CallTo(() => extractor.BuildFromFile(audioFileName)).Returns(new NonMedia());
-            A.CallTo(() => extractor.BuildFromFile(videoFileName)).Returns(new Video("myhash", videoFileName, 340, TimeSpan.Zero, 640, 320));
+            A.CallTo(() => extractor.BuildFromFile(videoFileName)).Returns(new Video(videoFileName, 340, TimeSpan.Zero, 640, 320));
             IFileSystemObserver observer = new FakeFileSystemObserver(fileSystem);
             MediaWatcher watcher = new MediaWatcher(fileSystem, repository, extractor, observer, log);
 
             watcher.Watch();
-            fileSystem.CreateFile(audioFileName);
-            fileSystem.CreateFile(videoFileName);
+            fileSystem.File.Create(audioFileName);
+            fileSystem.File.Create(videoFileName);
 
             Assert.IsTrue(repository.ContainsFile(videoFileName));
         }

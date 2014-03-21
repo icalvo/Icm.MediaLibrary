@@ -25,7 +25,7 @@ namespace Icm.MediaLibrary.Domain
 
         public void Synchronize(string rootPath)
         {
-            foreach (string filePath in this.fileSystem.GetFilesRecursively(rootPath))
+            foreach (string filePath in this.fileSystem.Directory.GetFilesRecursively(rootPath))
             {
                 this.AddFileIfMedia(filePath);
             }
@@ -33,23 +33,24 @@ namespace Icm.MediaLibrary.Domain
 
         private void AddFileIfMedia(string filePath)
         {
-            Media media = informationExtractor.BuildFromFile(filePath);
-            if (media.IsMedia())
+            if (this.repository.ContainsFile(filePath))
             {
-                if (this.repository.ContainsHash(media.Hash))
-                {
-                    this.log.Info(filePath + " not added because it is already added.");
-                }
-                else
+                this.log.Info(filePath + " not added because it is already added.");
+            }
+            else
+            {
+                Media media = informationExtractor.BuildFromFile(filePath);
+                if (media.IsMedia())
                 {
                     this.repository.Add(media);
                     this.log.Info(filePath + " added.");
                 }
+                else
+                {
+                    this.log.Info(filePath + " not added because it is not a media file.");
+                }
             }
-            else
-            {
-                this.log.Info(filePath + " not added because it is not a media file.");
-            }
+
         }
 
         void fileWatcher_Renamed(object sender, FileRenameEventArgs e)

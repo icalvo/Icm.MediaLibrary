@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbMediaRepository.cs" />
+    <Compile Include="DirectoryOperations.cs" />
     <Compile Include="EntityFrameworkSexContext.cs" />
+    <Compile Include="FileOperations.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="FileSystemObserver.cs" />
     <Compile Include="MediaInfoDotNetMediaFactory.cs" />
@@ -63,6 +65,10 @@
     <Compile Include="Migrations\201403091621522_HashAsMediaKey.cs" />
     <Compile Include="Migrations\201403091621522_HashAsMediaKey.Designer.cs">
       <DependentUpon>201403091621522_HashAsMediaKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403172138417_RemoveHash.cs" />
+    <Compile Include="Migrations\201403172138417_RemoveHash.Designer.cs">
+      <DependentUpon>201403172138417_RemoveHash.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201403091621522_HashAsMediaKey.resx">
       <DependentUpon>201403091621522_HashAsMediaKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403172138417_RemoveHash.resx">
+      <DependentUpon>201403172138417_RemoveHash.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

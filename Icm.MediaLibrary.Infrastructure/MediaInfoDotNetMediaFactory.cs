@@ -11,17 +11,10 @@ namespace Icm.MediaLibrary.Infrastructure
         {
             Media result;
             var info = new MediaInfoDotNet.MediaFile(filePath);
-            SHA1 sha1Encoder = new SHA1CryptoServiceProvider();
-
-            FileStream stream = File.OpenRead(filePath);
-            byte[] byteHash = sha1Encoder.ComputeHash(stream);
-            stream.Close();
-            string hash = System.BitConverter.ToString(byteHash);
 
             if (info.Video.Count > 0)
             {
                 result = new Video(
-                    hash,
                     filePath, 
                     info.size,
                     TimeSpan.FromMilliseconds(info.Video[0].duration),

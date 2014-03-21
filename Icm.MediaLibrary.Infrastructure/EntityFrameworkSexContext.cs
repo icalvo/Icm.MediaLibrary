@@ -10,7 +10,7 @@ namespace Icm.MediaLibrary.Infrastructure
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Media>()
-                .HasKey(media => media.Hash);
+                .HasKey(media => media.FileName);
         }
     }
 }

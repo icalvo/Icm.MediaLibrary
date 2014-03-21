@@ -6,15 +6,14 @@ namespace Icm.MediaLibrary.Infrastructure
 {
     public class FileSystem : IFileSystem
     {
-        public void CreateFile(string filePath)
+        public FileSystem()
         {
-            File.Create(filePath);
+            this.File = new FileOperations();
+            this.Directory = new DirectoryOperations();  
         }
 
-        public IEnumerable<string> GetFilesRecursively(string directoryPath)
-        {
-            return Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories);
-        }
+        public IFileOperations File { get; private set; }
+        public IDirectoryOperations Directory { get; private set; }
 
         public void RegisterObserver(IFileSystemObserver observer)
         {

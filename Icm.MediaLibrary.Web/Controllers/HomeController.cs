@@ -73,14 +73,38 @@ namespace Icm.MediaLibrary.Web.Controllers
             return Json(
                 request.Response(
                     videos.AsQueryable(),
-                    new Field<Video, string>(video => video.Hash, (video, search) => video.Hash.Contains(search)),
-                    new Field<Video, string>(video => video.FileName, (video, search) => video.FileName.Contains(search)),
-                    new Field<Video, TimeSpan>(video => video.Duration, (IQueryable<Video> items, string search) =>
-                    {
-                        int maxDuration = int.Parse(search);
-                        return items.Where(video => DbFunctions.DiffMinutes(TimeSpan.Zero, video.Duration) <= maxDuration);
-                    }),
-                    new Field<Video, string>(video => video.NormalizedTags, (video, search) => video.NormalizedTags.Contains(search))),
+                    new Field<Video, string>(
+                        video => video.FileName, 
+                        (video, search) => video.FileName.Contains(search)),
+                    new Field<Video, TimeSpan>(
+                        video => video.Duration, 
+                        (IQueryable<Video> items, string search) =>
+                        {
+                            try
+                            {
+                                var split = search.Split('-');
+                                if (split.Count() == 1)
+                                {
+                                    int maxDuration = int.Parse(search);
+                                    return items.Where(video => DbFunctions.DiffMinutes(TimeSpan.Zero, video.Duration) <= maxDuration);
+                                }
+
+                                if (split.Count() == 2)
+                                {
+                                    int minDuration = int.Parse(split[0]);
+                                    int maxDuration = int.Parse(split[1]) + 1;
+                                    return items.Where(video => DbFunctions.DiffMinutes(TimeSpan.Zero, video.Duration) <= maxDuration && DbFunctions.DiffMinutes(TimeSpan.Zero, video.Duration) >= minDuration);
+                                }
+                            }
+                            catch (Exception)
+                            {
+                            }
+                            return items;
+                        },
+                        duration => duration.ToString(@"hh\:mm\:ss")),
+                    new Field<Video, string>(
+                        video => video.NormalizedTags, 
+                        (video, search) => video.NormalizedTags.Contains(search))),
                 JsonRequestBehavior.AllowGet);
         }
     }

@@ -8,7 +8,7 @@ namespace Icm.MediaLibrary.Domain
         {
         }
 
-        public Video(string hash, string filePath, long size, TimeSpan duration, int width, int height) : base(hash, filePath, size)
+        public Video(string filePath, long size, TimeSpan duration, int width, int height) : base(filePath, size)
         {
             this.Duration = duration;
         }

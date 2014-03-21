@@ -6,8 +6,6 @@ namespace Icm.MediaLibrary.Domain
     {
         bool ContainsFile(string filename);
 
-        bool ContainsHash(string hash);
-
         void Add(Media media);
 
         IEnumerable<Video> GetVideos();

@@ -22,16 +22,9 @@ namespace Icm.MediaLibrary.Domain
             this.store.Add(media);
         }
 
-
         public IEnumerable<Video> GetVideos()
         {
             return this.store.OfType<Video>();
-        }
-
-
-        public bool ContainsHash(string hash)
-        {
-            return this.store.Any(media => media.Hash == hash);
         }
     }
 }

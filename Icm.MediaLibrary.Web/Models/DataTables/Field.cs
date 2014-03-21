@@ -72,7 +72,15 @@ namespace Icm.MediaLibrary.Web.Models
 
             if (this.searchFunction != null)
             {
-                return this.searchFunction(items, searchString);
+                var result = this.searchFunction(items, searchString);
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    return items;
+                }
             }
 
             if (searchExpression == null)
