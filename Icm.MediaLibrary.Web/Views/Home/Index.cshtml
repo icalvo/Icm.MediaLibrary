@@ -392,11 +392,18 @@
         @Html.Partial("_Register")
         @Html.Partial("_RegisterExternal")
         @Html.Partial("_Manage")
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+
+    <script type="text/javascript">
+        Configuration = {};
+        Configuration.RestRoot = '@Url.Content("~/")';
+        Configuration.RestMetadataUrl = Configuration.RestRoot + 'api/meta';
+    </script>
 
     <script src="~/client/lib/jquery-2.1.0.js"></script>
 
@@ -422,6 +429,7 @@
     <!-- SB Admin Scripts - Include with every page -->
     <script src="~/client/lib/sb-admin/sb-admin.js"></script>
 
+    <script src="~/client/app/restApi.js"></script>
     <script src="~/client/app/ajaxPrefilters.js"></script>
     <script src="~/client/app/app.datamodel.js"></script>
     <script src="~/client/app/app.viewmodel.js"></script>

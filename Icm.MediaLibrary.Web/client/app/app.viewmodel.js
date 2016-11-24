@@ -1,4 +1,4 @@
-﻿function AppViewModel(dataModel) {
+﻿function AppViewModel(dataModel, restApi) {
     // Private state
     var self = this;
 
@@ -141,7 +141,7 @@
                 return null;
             }
 
-            return new options.factory(self, dataModel);
+            return new options.factory(self, dataModel, restApi);
         });
 
         if (typeof (options.navigatorFactory) !== "undefined") {
@@ -157,9 +157,11 @@
         self["navigateTo" + options.name] = navigator;
     };
 
-    self.initialize = function () {
+    self.initialize = function() {
         var fragment = getFragment(),
-            externalAccessToken, externalError, loginUrl;
+            externalAccessToken,
+            externalError,
+            loginUrl;
 
         self.restoreSessionStorageFromLocalStorage();
         verifyStateMatch(fragment);
@@ -182,7 +184,7 @@
             }
 
             dataModel.getUserInfo()
-                .done(function (data) {
+                .done(function(data) {
                     if (data.userName) {
                         self.navigateToLoggedIn(data.userName);
                         self.navigateToManage(externalAccessToken, externalError);
@@ -190,7 +192,7 @@
                         self.navigateToLogin();
                     }
                 })
-                .fail(function () {
+                .fail(function() {
                     self.navigateToLogin();
                 });
         } else if (typeof (fragment.error) !== "undefined") {
@@ -200,42 +202,39 @@
         } else if (typeof (fragment.access_token) !== "undefined") {
             cleanUpLocation();
             dataModel.getUserInfo(fragment.access_token)
-                .done(function (data) {
+                .done(function(data) {
                     if (typeof (data.userName) !== "undefined" && typeof (data.hasRegistered) !== "undefined"
                         && typeof (data.loginProvider) !== "undefined") {
                         if (data.hasRegistered) {
                             self.navigateToLoggedIn(data.userName, fragment.access_token, false);
-                        }
-                        else if (typeof (sessionStorage["loginUrl"]) !== "undefined") {
+                        } else if (typeof (sessionStorage["loginUrl"]) !== "undefined") {
                             loginUrl = sessionStorage["loginUrl"];
                             sessionStorage.removeItem("loginUrl");
                             self.navigateToRegisterExternal(data.userName, data.loginProvider, fragment.access_token,
                                 loginUrl, fragment.state);
-                        }
-                        else {
+                        } else {
                             self.navigateToLogin();
                         }
                     } else {
                         self.navigateToLogin();
                     }
                 })
-                .fail(function () {
+                .fail(function() {
                     self.navigateToLogin();
                 });
         } else {
             dataModel.getUserInfo()
-                .done(function (data) {
+                .done(function(data) {
                     if (data.userName) {
                         self.navigateToLoggedIn(data.userName);
                     } else {
                         self.navigateToLogin();
                     }
                 })
-                .fail(function () {
+                .fail(function() {
                     self.navigateToLogin();
                 });
         }
-    }
+    };
 }
 
-var app = new AppViewModel(new AppDataModel());

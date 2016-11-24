@@ -1,4 +1,4 @@
-﻿function AppDataModel() {
+﻿function AppDataModel(restApi) {
     var self = this,
         // Routes
         addExternalLoginUrl = "/api/Account/AddExternalLogin",

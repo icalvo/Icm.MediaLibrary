@@ -9,7 +9,14 @@ namespace Icm.MediaLibrary.Infrastructure
         private readonly FileSystemWatcher fileSystemWatcher;
         public FileSystemObserver(string directoryPath)
         {
-            this.fileSystemWatcher = new FileSystemWatcher(directoryPath);
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.Attributes };
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.CreationTime };
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.DirectoryName };
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.FileName };
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.LastAccess };
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.LastWrite };
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.Security };
+            this.fileSystemWatcher = new FileSystemWatcher(directoryPath) { NotifyFilter = NotifyFilters.Size };
         }
 
         public void Watch()

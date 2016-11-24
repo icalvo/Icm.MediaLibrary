@@ -17,6 +17,9 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="table-responsive">
+                        <label for="newTags">Tags to add to filtered results:</label>
+                        <input type="text" name="newTags" id="newTags" data-bind="value: newTags" />
+                        <input type="button" value="Add tags" data-bind="click: addTags" />
                         <table class="table table-striped table-bordered table-hover" data-bind="dataTable: {}">
                             <thead>
                                 <tr>

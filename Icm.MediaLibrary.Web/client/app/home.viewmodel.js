@@ -1,11 +1,10 @@
-﻿function HomeViewModel(app, dataModel) {
+﻿function HomeViewModel(app, dataModel, restApi) {
     var self = this;
 
-    // HomeViewModel currently does not require data binding, so there are no visible members.
+    self.newTags = ko.observable();
+
+    self.addTags = function() {
+        restApi.media.addTags(newTags());
+    };
 }
 
-app.addViewModel({
-    name: "Home",
-    bindingMemberName: "home",
-    factory: HomeViewModel
-});

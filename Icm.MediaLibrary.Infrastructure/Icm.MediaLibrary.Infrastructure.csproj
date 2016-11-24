@@ -57,6 +57,7 @@
     <Compile Include="FileOperations.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="FileSystemObserver.cs" />
+    <Compile Include="QueryableExtensionMethods.cs" />
     <Compile Include="MediaInfoDotNetMediaFactory.cs" />
     <Compile Include="Migrations\201403052230512_FirstSchema.cs" />
     <Compile Include="Migrations\201403052230512_FirstSchema.Designer.cs">

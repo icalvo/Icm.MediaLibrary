@@ -1,4 +1,71 @@
 ﻿$(function () {
+    var restApi = new RestApi(Configuration.RestRoot, Configuration.RestMetadataUrl);
+
+    var app = new AppViewModel(new AppDataModel(restApi), restApi);
+
+    app.addViewModel({
+        name: "Home",
+        bindingMemberName: "home",
+        factory: HomeViewModel
+    });
+
+
+    app.addViewModel({
+        name: "Login",
+        bindingMemberName: "login",
+        factory: LoginViewModel,
+        navigatorFactory: function (app) {
+            return function () {
+                app.errors.removeAll();
+                app.user(null);
+                app.view(app.Views.Login);
+            };
+        }
+    });
+
+
+    app.addViewModel({
+        name: "Manage",
+        bindingMemberName: "manage",
+        factory: ManageViewModel,
+        navigatorFactory: function (app) {
+            return function(externalAccessToken, externalError) {
+                app.errors.removeAll();
+                app.view(app.Views.Manage);
+
+                if (typeof (externalAccessToken) !== "undefined" || typeof (externalError) !== "undefined") {
+                    app.manage().addExternalLogin(externalAccessToken, externalError);
+                } else {
+                    app.manage().load();
+                };
+            };
+        }
+    });
+
+    app.addViewModel({
+        name: "Register",
+        bindingMemberName: "register",
+        factory: RegisterViewModel
+    });
+
+
+    app.addViewModel({
+        name: "RegisterExternal",
+        bindingMemberName: "registerExternal",
+        factory: RegisterExternalViewModel,
+        navigatorFactory: function (app) {
+            return function (userName, loginProvider, externalAccessToken, loginUrl, state) {
+                app.errors.removeAll();
+                app.view(app.Views.RegisterExternal);
+                app.registerExternal().userName(userName);
+                app.registerExternal().loginProvider(loginProvider);
+                app.registerExternal().externalAccessToken = externalAccessToken;
+                app.registerExternal().loginUrl = loginUrl;
+                app.registerExternal().state = state;
+            };
+        }
+    });
+
     app.initialize();
 
     // Activate Knockout

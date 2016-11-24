@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Icm.MediaLibrary.Web.Models
 {
-    //public static class extensionmethods
+    //public static class ExtensionMethods
     //{
     //    public static IQueryable<T> OrderBy<T>(this IQueryable<T> q, string SortField)
     //    {
